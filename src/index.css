@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #ffe4e6; /* Soft Valentine Pink */
+  font-family: "Protest Riot", sans-serif;
+  overflow: hidden; /* Prevents scrollbars when button moves */
+}
+
+.valentine-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.text-container {
+  font-size: 3.5rem;
+  color: #be185d;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 0px #fff;
+}
+
+.main-image {
+  height: 300px; /* Adjust this based on your photo size */
+  width: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+  border: 5px solid white;
+}
+
+.button-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  /* We remove 'flex-wrap' so the Yes button stays put even if No moves away */
+}
+
+/* Unified Button Style */
+.valentine-btn {
+  background-color: #ffffff; /* Light background */
+  color: #db2777; /* Pink Text */
+  border: 3px solid #db2777;
+  border-radius: 50px; /* Pill shape */
+  
+  /* Large and Wide */
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 1rem 4rem; /* Top/Bottom 1rem, Left/Right 4rem */
+  min-width: 150px;
+  
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: "Protest Riot", sans-serif;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Hover Effect (Same for both) */
+.valentine-btn:hover {
+  background-color: #db2777; /* Invert colors */
+  color: #ffffff;
+  transform: scale(1.05); /* Slight grow */
+  box-shadow: 0 8px 15px rgba(219, 39, 119, 0.3);
+}

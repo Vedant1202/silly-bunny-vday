@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Protest+Riot&display=swap');
+
+/* 1. Global Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 2. The Page Wrapper (Centers the Box) */
+#root {
+  width: 100%;
+  min-height: 100dvh; /* Dynamic height for mobile browsers */
+  display: flex;
+  justify-content: center; /* Horizontal Center */
+  align-items: center;     /* Vertical Center */
+  overflow: hidden;
+}
+
+body {
+  background-color: #faf5ff; /* Soft Lavender */
+  font-family: "Protest Riot", sans-serif;
+}
+
+/* 3. The Center Box (Centers the Content) */
+.valentine-container {
+  /* Flexbox Column Stack */
+  display: flex;
+  flex-direction: column;
+  
+  /* CRITICAL: Centers items horizontally in the column */
+  align-items: center; 
+  
+  /* CRITICAL: Centers items vertically if box has height */
+  justify-content: center;
+  
+  /* Ensures text aligns center */
+  text-align: center;
+  
+  /* sizing */
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+/* 4. The Image Centering */
+.main-image {
+  /* Force block display to respect auto margins */
+  display: block; 
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2rem;
+  
+  /* Sizing constraints */
+  max-width: 90%; /* Leave some breathing room on sides */
+  max-height: 40vh; /* Don't get too tall */
+  width: auto;
+  height: auto;
+  
+  /* Styles */
+  border-radius: 15px;
+  box-shadow: 0 10px 25px rgba(88, 28, 135, 0.2);
+  border: 5px solid white;
+  
+  /* Ensures image isn't stretched */
+  object-fit: contain; 
+}
+
+/* 5. The Text Centering */
+.text-container {
+  width: 100%; /* Take full width */
+  display: flex; /* Use flex to center text content perfectly */
+  justify-content: center;
+  
+  font-size: 2.5rem; /* Mobile first size */
+  color: #581c87; 
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 0px #e9d5ff; 
+  line-height: 1.3;
+}
+
+/* 6. The Buttons Centering */
+.button-container {
+  display: flex;
+  justify-content: center; /* Centers buttons horizontally */
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  flex-wrap: wrap; /* Allows wrapping on tiny screens */
+}
+
+/* Button Styles */
+.valentine-btn {
+  background-color: #ffffff;
+  color: #7c3aed; 
+  border: 3px solid #7c3aed;
+  border-radius: 50px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  padding: 0.8rem 2.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Protest Riot", sans-serif;
+  box-shadow: 0 4px 6px rgba(124, 58, 237, 0.1);
+  
+  /* Critical for mobile touch */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.valentine-btn:hover {
+  background-color: #7c3aed; 
+  color: #fef08a; 
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+}
+
+/* Desktop Adjustments */
+@media (min-width: 768px) {
+  .text-container {
+    font-size: 3.5rem;
+  }
+  .valentine-btn {
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+  }
+}
