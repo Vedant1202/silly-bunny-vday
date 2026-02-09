@@ -45,6 +45,9 @@ npm run dev
 
 Open ```http://localhost:5173``` to view it in the browser.
 
+## Credits
+
+- Background music - Music by <a href="https://pixabay.com/users/hitslab-47305729/?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=365347">Ievgen Poltavskyi</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=music&utm_content=365347">Pixabay</a>
 
 ## Default
 
