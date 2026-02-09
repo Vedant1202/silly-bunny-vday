@@ -106,7 +106,7 @@ function App() {
         {yesPressed ? (
           <>
             <img src={successImg} alt="Celebration" className="main-image" />
-            <div className="text-container">YAY! Happy Valentine's Day!</div>
+            <div className="text-container">YAY! See you on 14th!</div>
           </>
         ) : (
           <>
