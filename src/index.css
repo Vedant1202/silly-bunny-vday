@@ -53,8 +53,8 @@ body {
 /* Unified Button Style */
 .valentine-btn {
   background-color: #ffffff; /* Light background */
-  color: #db2777; /* Pink Text */
-  border: 3px solid #db2777;
+  color: #451d01; /* Pink Text */
+  border: 3px solid #451d01;
   border-radius: 50px; /* Pill shape */
   
   /* Large and Wide */
@@ -71,7 +71,7 @@ body {
 
 /* Hover Effect (Same for both) */
 .valentine-btn:hover {
-  background-color: #db2777; /* Invert colors */
+  background-color: #451d01; /* Invert colors */
   color: #ffffff;
   transform: scale(1.05); /* Slight grow */
   box-shadow: 0 8px 15px rgba(219, 39, 119, 0.3);

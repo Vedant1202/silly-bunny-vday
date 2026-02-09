@@ -3,75 +3,71 @@ import confetti from "canvas-confetti";
 import HeartRain from "./HeartRain";
 import "./App.css";
 
+// Images
 import askImg from "./assets/bear.gif";
 import successImg from "./assets/success.png";
 
+// Audio (Importing them fixes the path issues on GitHub Pages)
+import bgMusicFile from "./assets/bg-music.mp3";
+import noSoundFile from "./assets/no-sound.mp3";
+import successMusicFile from "./assets/success-music.mp3";
+
 function App() {
+  const [started, setStarted] = useState(false); // New state for "Click to Enter"
   const [yesPressed, setYesPressed] = useState(false);
   const [noBtnPosition, setNoBtnPosition] = useState({ top: "auto", left: "auto", position: "static" });
 
-  // --- AUDIO REFS ---
+  // Audio Refs
   const bgMusicRef = useRef<HTMLAudioElement | null>(null);
   const successMusicRef = useRef<HTMLAudioElement | null>(null);
   const noSoundRef = useRef<HTMLAudioElement | null>(null);
 
-  // Initialize Audio
+  // Initialize Audio Objects
   useEffect(() => {
-    bgMusicRef.current = new Audio("/bg-music.mp3"); // Path from public folder
+    bgMusicRef.current = new Audio(bgMusicFile);
     bgMusicRef.current.loop = true;
-    bgMusicRef.current.volume = 0.4; // 40% volume
+    bgMusicRef.current.volume = 0.4;
 
-    successMusicRef.current = new Audio("/success-music.mp3");
+    successMusicRef.current = new Audio(successMusicFile);
     successMusicRef.current.volume = 0.6;
 
-    noSoundRef.current = new Audio("/no-sound.mp3");
-    
-    // Attempt to play background music on first user interaction
-    const playAudio = () => {
-      bgMusicRef.current?.play().catch(() => {
-        // Autoplay was prevented
-        console.log("Interaction required for music");
-      });
-      // Remove listener after first interaction
-      window.removeEventListener('click', playAudio);
-    };
-
-    window.addEventListener('click', playAudio);
-    
-    return () => {
-      window.removeEventListener('click', playAudio);
-      // Cleanup audio on unmount
-      bgMusicRef.current?.pause();
-      successMusicRef.current?.pause();
-    };
+    noSoundRef.current = new Audio(noSoundFile);
   }, []);
+
+  // Function to Start the Experience
+  const handleStart = () => {
+    setStarted(true);
+    // Attempt to play music immediately after user interaction
+    bgMusicRef.current?.play().catch(e => console.error("Audio play failed:", e));
+  };
 
   function handleYesClick() {
     setYesPressed(true);
 
-    // Stop background music
+    // Stop BG Music
     if (bgMusicRef.current) {
       bgMusicRef.current.pause();
       bgMusicRef.current.currentTime = 0;
     }
 
     // Play Success Music
-    successMusicRef.current?.play();
+    successMusicRef.current?.play().catch(e => console.error("Success audio failed:", e));
 
-    // Trigger confetti
     confetti({
       particleCount: 150,
       spread: 70,
       origin: { y: 0.6 },
-      colors: ['#590000', '#451d01', '#ffffff'] // Red, Brown, White confetti
+      colors: ['#590000', '#451d01', '#ffffff']
     });
   }
 
   function moveNoButton() {
-    // Play the "No" sound effect
+    // Play "No" sound
     if (noSoundRef.current) {
-      noSoundRef.current.currentTime = 0; // Rewind to start for rapid hovering
-      noSoundRef.current.play().catch(() => {}); // Catch error if user hasn't interacted yet
+      // Clone the node so we can play overlapping sounds if they hover fast
+      const soundClone = noSoundRef.current.cloneNode() as HTMLAudioElement;
+      soundClone.volume = 0.5;
+      soundClone.play().catch(() => {}); 
     }
 
     const btnWidth = 150;
@@ -88,6 +84,18 @@ function App() {
       left: `${randomX}px`, 
       top: `${randomY}px` 
     });
+  }
+
+  // Render the "Click to Enter" screen if not started
+  if (!started) {
+    return (
+      <div className="valentine-container">
+        <h1 className="text-container">💌</h1>
+        <button className="valentine-btn" onClick={handleStart}>
+          Click to Open
+        </button>
+      </div>
+    );
   }
 
   return (
